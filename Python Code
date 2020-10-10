@@ -1,0 +1,120 @@
+import numpy
+import pandas as pd
+import matplotlib.pyplot as plt
+import re
+import nltk
+import urllib.request
+
+
+url1 = "http://www.gutenberg.org/files/63396/63396-0.txt"
+url2 = "http://www.gutenberg.org/files/63397/63397-0.txt"
+raw1 = urllib.request.urlopen(url1).read()
+raw2 = urllib.request.urlopen(url2).read()
+# converting byte type into string type
+T1 = raw1.decode('utf-8')
+T2 = raw2.decode('utf-8')
+# simple pre-processing steps
+
+# converting all into lower case
+T1 = T1.lower()
+T2 = T2.lower()
+
+# removing index and reference part
+T1 = T1.split("INTRODUCTION", 1)[1]
+T1 = T1.split("SOME SOURCE REFERENCES", 0)[0]
+T2 = T2.split("PREFACE", 1)[1]
+T2 = T2.split("BIBLIOGRAPHY", 0)[0]
+
+# tokenizing the words
+t1 = nltk.word_tokenize(T1)
+t2 = nltk.word_tokenize(T2)
+
+
+# analyzing frequency distribution of both t1 and t2
+# word_counts1 = nltk.Counter(t1)
+# word_counts2 = nltk.Counter(t2)
+# df = pd.DataFrame.from_dict(word_counts1, orient='index')
+# df2 = df.nlargest(10, 0)
+# df2.plot(kind='bar', figsize=(20, 10), title='Most Frequent 10 Words FDISt').legend(["Frequency"])
+# df.plot(logy=True, kind='bar', figsize=(20, 10), title='FDISt').legend(["Frequency"])
+#
+# f1 = {}
+# for i in list(word_counts1.elements()):
+#     val = len(i)
+#     if val in f1:
+#         f1[val] += word_counts1[i]
+#     else:
+#        f1[val] = word_counts1[i]
+# f2 = list()
+# for i in range(1, 34):
+#     if i in f1:
+#        f2.append((i, f1[i]))
+#
+# df3 = pd.DataFrame.from_dict(f2)
+# df3.columns = ['Word Length', 'Count']
+# df3.plot(logy=True, x=0, y=1, kind='bar', figsize=(20, 10), title='Word Length vs Frequency Distribution', legend=False).\
+#     set(xlabel="Length of Words", ylabel="Frequency")
+#
+# f3 = {}
+# for i in list(word_counts2.elements()):
+#     val = len(i)
+#     if val in f3:
+#         f3[val] += word_counts2[i]
+#     else:
+#        f3[val] = word_counts2[i]
+# f4 = list()
+# for i in range(1, 34):
+#     if i in f:
+#        f4.append((i, f[i]))
+#
+# df4 = pd.DataFrame.from_dict(f2)
+# df4.columns = ['Word Length', 'Count']
+# df4.plot(logy=True, x=0, y=1, kind='bar', figsize=(20, 10), title='Word Length vs Frequency Distribution', legend=False).\
+#     set(xlabel="Length of Words", ylabel="Frequency")
+# # fdist1 = nltk.FreqDist(t1)
+# # fdist2 = nltk.FreqDist(t2)
+# # fdist1.plot()
+# # fdist1.plot(100)
+# # fdist2.plot()
+# # fdist2.plot(100)
+# # print(fdist1.most_common(100))
+# # print(fdist2.most_common(100))
+#
+#
+# # creating word cloud of both T1 and T2
+# wc1 = wordcloud.WordCloud().generate(T1)
+# plt.imshow(wc1)
+# plt.show()
+# wc2 = wordcloud.WordCloud().generate(T2)
+# plt.imshow(wc2)
+# plt.show()
+#
+# # creating word cloud of both T1 and T2 after removing stopwords
+# word_cloud1 = wordcloud.WordCloud(background_color="black", max_words=200, width=400, height=400, stopwords=STOPWORDS).generate(T1)
+# word_cloud2 = wordcloud.WordCloud(background_color="black", max_words=200, width=400, height=400, stopwords=STOPWORDS).generate(T2)
+# plt.imshow(word_cloud1)
+# plt.show()
+# plt.imshow(word_cloud2)
+# plt.show()
+#
+#
+# # pos tagging of both t1 and t2
+# p1 = nltk.pos_tag(t1)
+# p2 = nltk.pos_tag(t2)
+#
+#  f5 = {}
+#  for i in p1:
+#   val = i[1]
+#   if(val in f5):
+#       f5[val] += 1
+#   else:
+#      f5[val] = 1
+#  # cnt = list()
+#  # for i in list(f5.keys()):
+#  #     cnt.append((str(i), f5[str(i)]))
+#  # df5 = pd.DataFrame.from_dict(cnt)
+#  #
+#  # df5.plot(logy=True, x=0, y=1, kind='bar', figsize=(20, 10), title='Tags vs Frequency Distribution', legend=False).\
+#  #    set(xlabel="Tags", yLabel="Frequency")
+#
+# #plt.show()
