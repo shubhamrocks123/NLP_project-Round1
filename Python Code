@@ -29,7 +29,7 @@ T2 = T2.split("BIBLIOGRAPHY", 0)[0]
 t1 = nltk.word_tokenize(T1)
 t2 = nltk.word_tokenize(T2)
 
-
+# from here we have comment the code for executing each of the function one by one
 # analyzing frequency distribution of both t1 and t2
 # word_counts1 = nltk.Counter(t1)
 # word_counts2 = nltk.Counter(t2)
@@ -116,5 +116,3 @@ t2 = nltk.word_tokenize(T2)
 #  #
 #  # df5.plot(logy=True, x=0, y=1, kind='bar', figsize=(20, 10), title='Tags vs Frequency Distribution', legend=False).\
 #  #    set(xlabel="Tags", yLabel="Frequency")
-#
-# #plt.show()
