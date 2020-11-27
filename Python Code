@@ -123,3 +123,45 @@ df5 = pd.DataFrame.from_dict(cnt)
 df5.plot(logy=True, x=0, y=1, kind='bar', figsize=(20, 10), title='Tags vs Distribution of T2 ', legend=False).\
     set(xlabel="Tags", yLabel="Frequency")
 plt.show()
+
+
+
+# For the noun and verb labelling for the  first novel
+dict1={'NN':0,'NNP':0,'NNS':0,'NNPS':0}
+dict2={'VB':0,'VBN':0,'VBP':0,'VBD':0,'VBZ':0,'VBG':0,'VBN':0 }
+count=0
+for sentence in t1:
+     for word,pos in nltk.pos_tag(nltk.word_tokenize(str(sentence))):
+      if (pos == 'NN' or pos == 'NNP' or pos == 'NNS' or pos == 'NNPS'):
+            nouns.append(word)
+            count=dict1[pos]
+            count+=1
+            dict1[pos]=count
+      if (pos == 'VB' or pos == 'VBN' or pos == 'VBP' or pos == 'VBD'or pos=='VBZ'or pos=='VBG'or pos=='VBN'):
+            count=dict2[pos]
+            count+=1
+            dict2[pos]=count
+           
+plt.bar(list(dict1.keys()), dict1.values(), color='g')
+plt.bar(list(dict2.keys()), dict2.values(), color='b')
+plt.show() 
+
+# For the noun and verb labelling for the second novel
+dict1={'NN':0,'NNP':0,'NNS':0,'NNPS':0}
+dict2={'VB':0,'VBN':0,'VBP':0,'VBD':0,'VBZ':0,'VBG':0,'VBN':0 }
+count=0
+for sentence in t2:
+     for word,pos in nltk.pos_tag(nltk.word_tokenize(str(sentence))):
+      if (pos == 'NN' or pos == 'NNP' or pos == 'NNS' or pos == 'NNPS'):
+            nouns.append(word)
+            count=dict1[pos]
+            count+=1
+            dict1[pos]=count
+      if (pos == 'VB' or pos == 'VBN' or pos == 'VBP' or pos == 'VBD'or pos=='VBZ'or pos=='VBG'or pos=='VBN'):
+            count=dict2[pos]
+            count+=1
+            dict2[pos]=count
+           
+plt.bar(list(dict1.keys()), dict1.values(), color='g')
+plt.bar(list(dict2.keys()), dict2.values(), color='b')
+plt.show() 
