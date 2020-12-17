@@ -6,6 +6,16 @@ import nltk
 import urllib.request
 import wordcloud
 from wordcloud import STOPWORDS,WordCloud
+import spacy
+from nltk.tokenize import word_tokenize
+from nltk.tag import pos_tag
+import spacy
+from spacy import displacy
+from collections import Counter
+import spacy
+import en_core_web_sm
+nlp = en_core_web_sm.load()
+from spacy import displacy
 
 url1 = "http://www.gutenberg.org/files/63396/63396-0.txt"
 url2 = "http://www.gutenberg.org/files/63397/63397-0.txt"
@@ -165,3 +175,17 @@ for sentence in t2:
 plt.bar(list(dict1.keys()), dict1.values(), color='g')
 plt.bar(list(dict2.keys()), dict2.values(), color='b')
 plt.show() 
+
+
+doc = nlp('During the Pleistocene Epoch or Great Ice Age, huge glaciers formed inCanada and advanced southward into the great, central, low-lyingInterior Plains of the United States. (See figure 2.) These glaciers andtheir deposits modified the surface of the land they covered, mostlybetween the Missouri and the Ohio Rivers; they smoothed the contours andgave the land a more subdued aspect than it had before they came. Thisglacially smoothed and modified land is called the Central Lowland.Although the ice sheets lapped onto the northern part, the Great Plainsis the largely unglaciated region that extends from the Gulf CoastalPlain in Texas northward into Canada between the Central Lowland and thefoot of the Rocky Mountains. Its eastern margin in Texas and Oklahoma ismarked by a prominent escarpment, the Caprock escarpment. Its southernmargin, where it abuts the Coastal Plain in Texas, is at another abruptrise or scarp along the Balcones fault zone.')
+#Printing  the entities present in the given text
+print([(X.text) for X in doc.ents])
+#Printing  the entities tag labels  present in the given text
+print([(X.label_) for X in doc.ents])
+
+
+
+
+doc = nlp("About 70 million years ago the seas were displaced from the continental interior by slow uplift of the continent.")
+displacy.render(doc, style="dep", jupyter=True, options={"distance":140})
+displacy.render(doc, style="ent", jupyter=True)
