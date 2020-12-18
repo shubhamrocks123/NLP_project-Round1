@@ -184,6 +184,6 @@ print([(X.label_) for X in doc.ents])
 
 
 
-doc = nlp("About 70 million years ago the seas were displaced from the continental interior by slow uplift of the continent.")
-displacy.render(doc, style="dep", jupyter=True, options={"distance":140})
+doc = nlp("For instance, the westbound traveler on Interstate Highway 70 traverses nearly a thousand miles of low, rounded hills after leaving theAppalachians; the rolling landscape is broken only by a few flat areaswhere glacial ice or small lakes once stood. Suddenly, near Salina,Kans., the observant traveler senses a difference in the landscape.Instead of rounded hills, widely or closely spaced, he sees on theskyline flat surfaces, or remnants of flat surfaces. As he climbs gentlywestward these broken horizontal lines stand etched against the sky.About 35 miles west of Salina he finds himself on a broad, flat plateau,here seemingly he can see forever. True, in places he descends intostream valleys, but only briefly, for he soon climbs back onto the flatsurface.")
+displacy.render(doc, style="dep", jupyter=True, options={"distance":100})
 displacy.render(doc, style="ent", jupyter=True)
