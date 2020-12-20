@@ -135,44 +135,63 @@ df5.plot(logy=True, x=0, y=1, kind='bar', figsize=(20, 10), title='Tags vs Distr
 plt.show()
 
 
-
 # For the noun and verb labelling for the  first novel
-dict1={'NN':0,'NNP':0,'NNS':0,'NNPS':0}
-dict2={'VB':0,'VBN':0,'VBP':0,'VBD':0,'VBZ':0,'VBG':0,'VBN':0 }
+dict1={}
+dict2={}
 count=0
+noun=0
+verb=0
 for sentence in t1:
      for word,pos in nltk.pos_tag(nltk.word_tokenize(str(sentence))):
-      if (pos == 'NN' or pos == 'NNP' or pos == 'NNS' or pos == 'NNPS'):
-            count=dict1[pos]
-            count+=1
-            dict1[pos]=count
-      if (pos == 'VB' or pos == 'VBN' or pos == 'VBP' or pos == 'VBD'or pos=='VBZ'or pos=='VBG'or pos=='VBN'):
-            count=dict2[pos]
-            count+=1
-            dict2[pos]=count
+      if (pos.startswith('N')):
+            dict1[pos]=0
+      if (pos.startswith('V')):
+            dict2[pos]=0
+            
+for sentence in t1:
+     for word,pos in nltk.pos_tag(nltk.word_tokenize(str(sentence))):
+      if (pos.startswith('N')):
+            dict1[pos]+=1
+            noun+=1
+            
+      if (pos.startswith('V')):
+            dict2[pos]+=1
+            verb+=1            
            
 plt.bar(list(dict1.keys()), dict1.values(), color='g')
 plt.bar(list(dict2.keys()), dict2.values(), color='b')
 plt.show() 
+print(noun)
+print(verb)
 
-# For the noun and verb labelling for the second novel
-dict1={'NN':0,'NNP':0,'NNS':0,'NNPS':0}
-dict2={'VB':0,'VBN':0,'VBP':0,'VBD':0,'VBZ':0,'VBG':0,'VBN':0 }
+# For the noun and verb labelling for the  second novel
+dict1={}
+dict2={}
 count=0
+noun=0
+verb=0
 for sentence in t2:
      for word,pos in nltk.pos_tag(nltk.word_tokenize(str(sentence))):
-      if (pos == 'NN' or pos == 'NNP' or pos == 'NNS' or pos == 'NNPS'):
-            count=dict1[pos]
-            count+=1
-            dict1[pos]=count
-      if (pos == 'VB' or pos == 'VBN' or pos == 'VBP' or pos == 'VBD'or pos=='VBZ'or pos=='VBG'or pos=='VBN'):
-            count=dict2[pos]
-            count+=1
-            dict2[pos]=count
+      if (pos.startswith('N')):
+            dict1[pos]=0
+      if (pos.startswith('V')):
+            dict2[pos]=0
+            
+for sentence in t2:
+     for word,pos in nltk.pos_tag(nltk.word_tokenize(str(sentence))):
+      if (pos.startswith('N')):
+            dict1[pos]+=1
+            noun+=1
+            
+      if (pos.startswith('V')):
+            dict2[pos]+=1
+            verb+=1            
            
 plt.bar(list(dict1.keys()), dict1.values(), color='g')
 plt.bar(list(dict2.keys()), dict2.values(), color='b')
 plt.show() 
+print(noun)
+print(verb)
 
 
 doc = nlp('During the Pleistocene Epoch or Great Ice Age, huge glaciers formed in Canada and advanced southward into the great, central, low-lying interior Plains of the United States. These glaciers and their deposits modified the surface of the land they covered, mostly between Missouri and the Ohio Rivers; they smoothed the contours and gave the land a more subdued aspect than it had before they came. This glacially smoothed and modified land is called the Central Lowland. Although the ice sheets lapped onto the northern part, the Great Plains the largely unglaciated region that extends from the Gulf coastal plain in Texas northward into Canada between the Central Lowland and the foot of the Rocky Mountains. Its eastern margin in Texas and Oklahoma is marked by a prominent escarpment, the Caprock escarpment. Its southern margin, where it abuts the Coastal Plain in Texas, is at another abrupt rise or scarp along the Balcones fault zone.')
